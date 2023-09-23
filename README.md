@@ -1,3 +1,14 @@
+
+# SoICT Hackathon 2023 - Vietnamese Handwritten Text Recognition
+
+## Team name: Couhp_AIO
+### Team member:
+- Nguyen Bao Phuoc
+- Le Van Duy
+- Pham Huu Hung
+
+
+
 # Mô hình Abinet
 Mô hình pretrained nhóm sử dụng BTC có thể tải lại ở đây ( [Model download link](https://paddleocr.bj.bcebos.com/rec_r45_abinet_train.tar))
 ## Train mô hình K-fold Cross Validation với Single GPU training
