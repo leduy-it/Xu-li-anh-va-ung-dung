@@ -21,7 +21,7 @@ python3 tools/train_kfold.py
 
 
 
-## Inference  mô hình K-fold Cross Validation(output của lớp linear)
+## Inference  mô hình K-fold Cross Validation(bao gồm cả nhãn output của lớp linear)
 
 ```
 python3 tools/predictor_kfold_without_softmax.py
@@ -44,7 +44,7 @@ python3 tools/train_kfold_svtr_large.py
 ```
 
 
-## Inference mô hình K-fold Cross Validation(output của lớp linear)
+## Inference mô hình K-fold Cross Validation(bao gồm cả nhãn output của lớp linear)
 ```
 python3 tools/predictor_kfold_without_softmax_SVTR.py
 ```
