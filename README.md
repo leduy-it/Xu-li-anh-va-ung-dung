@@ -1,4 +1,3 @@
-
 # SoICT Hackathon 2023 - Vietnamese Handwritten Text Recognition
 
 ## Team name: Couhp_AIO
@@ -7,38 +6,65 @@
 - Le Van Duy
 - Pham Huu Hung
 
-
-
-# Mô hình Abinet
-Mô hình pretrained nhóm sử dụng BTC có thể tải lại ở đây ( [Model download link](https://paddleocr.bj.bcebos.com/rec_r45_abinet_train.tar))
-## Train mô hình K-fold Cross Validation với Single GPU training
-
-Lệnh train lại mô hình abinet 10 fold cross validation và hiện tại nhóm hiện đang config cứng
+## Requirements
+create conda virtual environment
 ```
-python3 tools/train_kfold.py
+conda create -n <environment-name> --file environment.yml
+```
+K-fold Dataset for deeptext model: Unzip k-fold ([link](https://drive.google.com/drive/folders/1Z1qO-hk6cRwOELIjY_NxTSoTaX51SKIE?usp=drive_link)) to get 5 sub-folder and
+put them into ./data/kfold_lmdb folder like this:
+```
+├───data
+│   ├───kfold_lmdb
+│   │   ├───1
+│   │   │   ├───train
+│   │   │   │   └───provided
+│   │   │   └───val
+│   │   │       └───provided
+│   │   ├───2
+│   │   │   ├───train
+│   │   │   │   └───provided
+│   │   │   └───val
+│   │   │       └───provided
+│   │   ├───3
+│   │   │   ├───train
+│   │   │   │   └───provided
+│   │   │   └───val
+│   │   │       └───provided
+│   │   ├───4
+│   │   │   ├───train
+│   │   │   │   └───provided
+│   │   │   └───val
+│   │   │       └───provided
+│   │   └───5
+│   │       ├───train
+│   │       │   └───provided
+│   │       └───val
+│   │           └───provided
+│   └─── ...
+└─── ...
 ```
 
-
-
-
-## Inference  mô hình 10-fold Cross Validation Abinet(bao gồm cả nhãn output của lớp linear)
-
+## Training
+To training 5-fold with image size 32x100, run:
 ```
-python3 tools/predictor_kfold_without_softmax.py
+python kfold_train.py --train_kfold data/kfold_lmdb --select_data provided --batch_ratio 1.0 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --PAD --sensitive --adam --augment --rgb
 ```
-
-
-
-
-# Mô hình SVTR-Large
-Mô hình pretrained nhóm sử dụng BTC có thể tải lại ở đây [Model download link](https://paddleocr.bj.bcebos.com/PP-OCRv3/chinese/rec_svtr_large_none_ctc_en_train.tar)
-## Train mô hình 10-fold Cross Validation SVTR-Large
+To training 5-fold with image size 45x150, run:
 ```
-python3 tools/train_kfold_svtr_large.py
+python kfold_train.py --imgH 45 --imgW 150 --train_kfold data/kfold_lmdb --select_data provided --batch_ratio 1.0 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --PAD --sensitive --adam --augment --rgb
 ```
 
-
-## Inference mô hình 10-fold Cross Validation SVTR-Large(bao gồm cả nhãn output của lớp linear)
+## Infer
+To infer 10 fold (5 fold 32x100, 5 fold 45x150), run:
 ```
-python3 tools/predictor_kfold_without_softmax_SVTR.py
+python ensemble_prediction.py --image_folder [Path to folder contain test image] --workers 0 --saved_model saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111_32x100_AIOaugment_fold_1\best_accuracy.pth --batch_size 64 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --sensitive --PAD
+```
+where **[Path to folder contain test image]** is path to image folder. After running this file,
+10 prediction files will be generated in ./saved_predictions folder (Use for ensemble)
+
+## Ensemble
+To ensemble 3 model (Deeptext, Abinet and SVTR), run:
+```
+python ensemble_10fold_models.py
 ```
