@@ -59,14 +59,10 @@ python ensemble_prediction.py --image_folder [Path to folder contain test image]
 where **[Path to folder contain test image]** is path to image folder. After running this file,
 10 prediction files will be generated in ./saved_predictions folder (Use for ensemble)
 
-## Ensemble
-To ensemble 3 model (Deeptext, Abinet and SVTR), run:
-```
-python ensemble_10fold_models.py
-```
+
 
 # Model Abinet
-Pretrained model we use can download here: ( [Model download link](https://paddleocr.bj.bcebos.com/rec_r45_abinet_train.tar))
+Pretrained model we use can download here: ([Model download link](https://paddleocr.bj.bcebos.com/rec_r45_abinet_train.tar))
 ## Train model with K-fold Cross Validation with Single GPU training
 
 To train model abinet with 10 fold cross validation, run this command:
@@ -95,7 +91,7 @@ python3 tools/predictor_kfold_without_softmax.py
 
 
 # Model SVTR-Large
-Pretrained model we use can download here:[Model download link](https://paddleocr.bj.bcebos.com/PP-OCRv3/chinese/rec_svtr_large_none_ctc_en_train.tar)
+Pretrained model we use can download here: ([Model download link](https://paddleocr.bj.bcebos.com/PP-OCRv3/chinese/rec_svtr_large_none_ctc_en_train.tar))
 ## Train model with K-fold Cross Validation with Single GPU training
 ```
 python3 tools/train_kfold_svtr_large.py
@@ -106,4 +102,13 @@ python3 tools/train_kfold_svtr_large.py
 To get predict model svtr with 10 fold cross validation, run this command:
 ```
 python3 tools/predictor_kfold_without_softmax_SVTR.py
+```
+
+
+
+# Ensemble
+## After inferring the 3 models, we proceed to ensemble the results by running the following command:
+To ensemble 3 model (Deeptext, Abinet and SVTR), run:
+```
+python ensemble_10fold_models.py
 ```
