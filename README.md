@@ -6,7 +6,7 @@
 - Le Van Duy
 - Pham Huu Hung
 
-#Model Deeptext
+# Model Deeptext
 K-fold Dataset for deeptext model: Unzip k-fold ([link](https://drive.google.com/drive/folders/1Z1qO-hk6cRwOELIjY_NxTSoTaX51SKIE?usp=drive_link)) to get 5 sub-folder and
 put them into ./data/kfold_lmdb folder like this:
 ```
