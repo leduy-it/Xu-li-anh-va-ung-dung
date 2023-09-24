@@ -6,11 +6,7 @@
 - Le Van Duy
 - Pham Huu Hung
 
-## Requirements
-create conda virtual environment
-```
-conda create -n <environment-name> --file environment.yml
-```
+#Model Deeptext
 K-fold Dataset for deeptext model: Unzip k-fold ([link](https://drive.google.com/drive/folders/1Z1qO-hk6cRwOELIjY_NxTSoTaX51SKIE?usp=drive_link)) to get 5 sub-folder and
 put them into ./data/kfold_lmdb folder like this:
 ```
@@ -67,4 +63,47 @@ where **[Path to folder contain test image]** is path to image folder. After run
 To ensemble 3 model (Deeptext, Abinet and SVTR), run:
 ```
 python ensemble_10fold_models.py
+```
+
+# Model Abinet
+Pretrained model we use can download here: ( [Model download link](https://paddleocr.bj.bcebos.com/rec_r45_abinet_train.tar))
+## Train model with K-fold Cross Validation with Single GPU training
+
+To train model abinet with 10 fold cross validation, run this command:
+```
+python3 tools/train_kfold.py
+```
+
+
+
+
+## Inference K-fold Cross Validation Model
+
+To get predict model abinet with 10 fold cross validation, run this command:
+
+```
+python3 tools/predictor_kfold_without_softmax.py
+```
+
+
+
+
+
+
+
+
+
+
+# Model SVTR-Large
+Pretrained model we use can download here:[Model download link](https://paddleocr.bj.bcebos.com/PP-OCRv3/chinese/rec_svtr_large_none_ctc_en_train.tar)
+## Train model with K-fold Cross Validation with Single GPU training
+```
+python3 tools/train_kfold_svtr_large.py
+```
+
+
+## Inference K-fold Cross Validation Model
+To get predict model svtr with 10 fold cross validation, run this command:
+```
+python3 tools/predictor_kfold_without_softmax_SVTR.py
 ```
