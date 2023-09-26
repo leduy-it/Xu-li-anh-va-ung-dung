@@ -6,6 +6,54 @@
 - Le Van Duy
 - Pham Huu Hung
 
+# The simplest way for the organizers to re-implement on docker image:
+
+After running docker run command like this:
+
+```
+sudo docker run --gpus all -it bkai_couhp_v5:latest
+```
+
+## To inference:
+
+With gpu, run this command:
+```
+bash inference.sh
+```
+With cpu, run this command:
+
+```
+bash inference_cpu.sh
+```
+
+## To ensemble and get the final result:
+
+Run this command:
+
+
+```
+bash ensemble.sh
+```
+After run ensemble.sh command, we will get the filenal result in directory saved_predictions as txt file
+
+
+## If organizers want to training from scratch
+
+
+To re-training, run this command:
+
+```
+bash train.sh
+```
+
+
+
+
+
+
+
+
+
 # Model Deeptext
 K-fold Dataset for deeptext model: Unzip k-fold ([link](https://drive.google.com/drive/folders/1Z1qO-hk6cRwOELIjY_NxTSoTaX51SKIE?usp=drive_link)) to get 5 sub-folder and
 put them into ./data/kfold_lmdb folder like this:
@@ -54,11 +102,11 @@ python kfold_train.py --imgH 45 --imgW 150 --train_kfold data/kfold_lmdb --selec
 ## Infer
 To infer 10 fold (5 fold 32x100, 5 fold 45x150), run:
 ```
-python ensemble_prediction.py --image_folder [Path to folder contain test image] --workers 0 --saved_model saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111_32x100_AIOaugment_fold_1\best_accuracy.pth --batch_size 64 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --sensitive --PAD
+python ensemble_prediction.py --image_folder data/public_test_data/new_public_test --workers 0 --saved_model saved_models\TPS-ResNet-BiLSTM-Attn-Seed1111_32x100_AIOaugment_fold_1\best_accuracy.pth --batch_size 64 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --sensitive --PAD
 ```
 where **[Path to folder contain test image]** is path to image folder. After running this file,
 10 prediction files will be generated in ./saved_predictions folder (Use for ensemble)
-
+    
 
 
 # Model Abinet
