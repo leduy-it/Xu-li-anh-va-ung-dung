@@ -11,7 +11,7 @@
 Running docker image, run a command like this is for our computer example:
 
 ```
-sudo docker run --gpus 0 -it bkai_couhp_v5:latest
+sudo docker run --gpus 0 -it bkai_couhp_v6:latest
 ```
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
