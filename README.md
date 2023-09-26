@@ -50,7 +50,7 @@ bash train.sh
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
-For more detail each model command:
+For more details each model command is below:
 
 
 
