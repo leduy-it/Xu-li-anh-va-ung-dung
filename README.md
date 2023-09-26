@@ -34,7 +34,7 @@ Run this command:
 ```
 bash ensemble.sh
 ```
-After run ensemble.sh command, we will get the filenal result in directory saved_predictions as txt file
+After run ensemble.sh command, we will get the final result in directory path is working as txt file(prediction.txt)
 
 
 ## If organizers want to training from scratch
@@ -49,8 +49,8 @@ bash train.sh
 
 
 
-
-
+------------------------------------------------------------------------------------------------------------------------------------------------
+For more detail each model command:
 
 
 
