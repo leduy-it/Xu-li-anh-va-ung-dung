@@ -47,7 +47,7 @@ To re-training, run this command:
 ```
 bash train.sh
 ```
-This command has us configuring and retraining all the models we currently have, this process can take up to several days.
+We have configured this command to retrain all the models we have trained, this process can take up to several days.
 
 
 
