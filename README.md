@@ -8,12 +8,13 @@
 
 # The simplest way for the organizers to re-implement on docker image:
 
-After running docker run command like this:
+Running docker image, run a command like this is for our computer example:
 
 ```
-sudo docker run --gpus all -it bkai_couhp_v5:latest
+sudo docker run --gpus 0 -it bkai_couhp_v5:latest
 ```
-
+------------------------------------------------------------------------------------------------------------------------------------------------
+# After running docker image
 ## To inference:
 
 With gpu, run this command:
@@ -25,6 +26,7 @@ With cpu, run this command:
 ```
 bash inference_cpu.sh
 ```
+After inference, we obtain the results of each model and use them for the ensemble step to get the final result.
 
 ## To ensemble and get the final result:
 
@@ -45,7 +47,7 @@ To re-training, run this command:
 ```
 bash train.sh
 ```
-
+This command has us configuring and retraining all the models we currently have, this process can take up to several days.
 
 
 
